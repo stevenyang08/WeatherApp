@@ -39,5 +39,14 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>APIKEY</key>
+	<string>2c191cd0c1ef4832835141846193003</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>&quot;Your location is used to find local weather data.&quot;</string>
 </dict>
 </plist>

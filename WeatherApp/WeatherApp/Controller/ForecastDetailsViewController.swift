@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ForecastDetailsViewController.swift
 //  WeatherApp
 //
 //  Created by Wellison Pereira on 3/30/19.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ForecastDetailsViewController: UIViewController {
+    
+    var forecast: ForecastDay?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        print(forecast)
     }
-
-
 }
-
