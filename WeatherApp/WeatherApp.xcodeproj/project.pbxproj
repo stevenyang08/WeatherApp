@@ -28,6 +28,7 @@
 		9552CC65224FF45D00CAC1A9 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552CC64224FF45D00CAC1A9 /* UIViewControllerExtension.swift */; };
 		9552CC6B224FF6E200CAC1A9 /* CustomAlertLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9552CC6A224FF6E200CAC1A9 /* CustomAlertLoadingView.xib */; };
 		9552CC6D224FF75800CAC1A9 /* CustomAlertLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552CC6C224FF75800CAC1A9 /* CustomAlertLoadingView.swift */; };
+		9552CC6F224FFD1A00CAC1A9 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9552CC6E224FFD1A00CAC1A9 /* UIImageViewExtension.swift */; };
 		A8509341AE047C52F23A2CF9 /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B7D4D46B66DE49E1622A6C4 /* Pods_WeatherApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		9552CC64224FF45D00CAC1A9 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		9552CC6A224FF6E200CAC1A9 /* CustomAlertLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertLoadingView.xib; sourceTree = "<group>"; };
 		9552CC6C224FF75800CAC1A9 /* CustomAlertLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertLoadingView.swift; sourceTree = "<group>"; };
+		9552CC6E224FFD1A00CAC1A9 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				9552CC4A224FA4E000CAC1A9 /* UIApplicationExtension.swift */,
 				9552CC64224FF45D00CAC1A9 /* UIViewControllerExtension.swift */,
 				9552CC62224FEEB300CAC1A9 /* UIViewExtension.swift */,
+				9552CC6E224FFD1A00CAC1A9 /* UIImageViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				9552CC3F224FA2B500CAC1A9 /* Logger.swift in Sources */,
 				9552CC58224FC01D00CAC1A9 /* WeatherCell.swift in Sources */,
 				9552CC26224F9DBE00CAC1A9 /* AppDelegate.swift in Sources */,
+				9552CC6F224FFD1A00CAC1A9 /* UIImageViewExtension.swift in Sources */,
 				9552CC47224FA48400CAC1A9 /* ErrorCodes.swift in Sources */,
 				9552CC5A224FCBBE00CAC1A9 /* ForecastDetailsViewController.swift in Sources */,
 				9552CC49224FA48900CAC1A9 /* ErrorBanner.swift in Sources */,

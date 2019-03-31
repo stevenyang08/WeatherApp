@@ -10,10 +10,32 @@ import UIKit
 
 class WeatherCell: UICollectionViewCell {
     
-    @IBOutlet weak var dayLabel: UILabel!
+    @IBOutlet weak var cellBackgroundImage: UIImageView!
+    @IBOutlet weak var weatherImage: UIImageView!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var currentTempLabel: UILabel!
+    @IBOutlet weak var minimumTempLabel: UILabel!
+    @IBOutlet weak var maximumTempLabel: UILabel!
+    
+    //Variables
+    lazy var dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d"
+        return dateFormatter
+    }()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func set(forecast: ForecastDay) {
+        let date = Date(timeIntervalSince1970: Double(forecast.dateEpoch))
+        cellBackgroundImage.image = UIImage(named: "\(forecast.day.condition.code)f")
+        dateLabel.text = dateFormatter.string(from: date)
+        weatherImage.image = UIImage(named: "\(forecast.day.condition.code)")
+        currentTempLabel.text = "\(forecast.day.averageTempFahrenheit)º F"
+        minimumTempLabel.text = "Min: \(forecast.day.minTempFahrenheit)º F"
+        maximumTempLabel.text = "Max: \(forecast.day.maxTempFahrenheit)º F"
     }
     
 }

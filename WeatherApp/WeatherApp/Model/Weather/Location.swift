@@ -9,14 +9,14 @@
 import Foundation
 
 struct WeatherLocation: Codable {
-    var name: String?
-    var region: String?
-    var country: String?
-    var latitude: Double?
-    var longitude: Double?
-    var tzId: String?
-    var localTimeEpoch: Int?
-    var localTime: String?
+    var name: String
+    var region: String
+    var country: String
+    var latitude: Double
+    var longitude: Double
+    var tzId: String
+    var localTimeEpoch: Int
+    var localTime: String
     
     enum CodingKeys: String, CodingKey {
         case name = "name"

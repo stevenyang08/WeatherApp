@@ -75,34 +75,34 @@ class ForecastViewController: UIViewController {
     //Functions
     private func setupView() {
         manager.delegate = self
-        
         view.addGradient(topColor: #colorLiteral(red: 0.7450980392, green: 0.5490196078, blue: 0.7137254902, alpha: 1), bottomColor: #colorLiteral(red: 0.3607843137, green: 0.3607843137, blue: 0.5529411765, alpha: 1))
     }
     
     private func loadWeatherData() {
         WeatherService.getWeather(query: queryZipCode) { [weak self] (weather) in
-            if let weather = weather, let forecast = weather.forecast?.forecastDay {
-                self?.updateViewWithWeather(weather: weather, forecast: forecast)
+            if let weather = weather {
+                self?.updateViewWithWeather(weather: weather)
             } else {
                 ErrorBanner.displayErrorBanner(with: .genericError)
+                self?.isFetchingData = false
                 self?.hideLoading()
             }
         }
     }
     
-    private func updateViewWithWeather(weather: Weather, forecast: [ForecastDay]) {
-        self.forecast = forecast
+    private func updateViewWithWeather(weather: Weather) {
+        self.forecast = weather.forecast.forecastDay
         weatherCollectionView.reloadData()
         isFetchingData = false
-        self.hideLoading()
+        hideLoading()
         
         emptyView.isHidden = forecast.count > 0
-        title = weather.location?.name
+        title = weather.location.name
     }
     
     private func searchByLocation() {
         showLoading()
-        manager.requestLocation()
+        manager.startUpdatingLocation()
     }
     
     private func presentSearch() {
@@ -135,7 +135,11 @@ extension ForecastViewController {
 
 extension ForecastViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let currentLocation = locations.first else { return }
+        guard let currentLocation = locations.first else {
+            isFetchingData = false
+            hideLoading()
+            return
+        }
         
         CLGeocoder().reverseGeocodeLocation(currentLocation) { [weak self] (placemarks, error) in
             guard error == nil, let zipCode = placemarks?.first?.postalCode else {
@@ -152,6 +156,8 @@ extension ForecastViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         Log.logger.error("Location Manager failed to update location: \(error)")
+        isFetchingData = false
+        hideLoading()
     }
 }
 
@@ -164,7 +170,7 @@ extension ForecastViewController: UICollectionViewDelegate {
 
 extension ForecastViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 100)
+        return CGSize(width: view.frame.width, height: 80)
     }
 }
 
@@ -176,7 +182,7 @@ extension ForecastViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as? WeatherCell else { return UICollectionViewCell() }
         
-        cell.dayLabel.text = "\(forecast[indexPath.item].day?.averageHumidity ?? 0.0)"
+        cell.set(forecast: forecast[indexPath.item])
         
         return cell
     }

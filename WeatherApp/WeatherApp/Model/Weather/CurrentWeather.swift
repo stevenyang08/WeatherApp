@@ -10,29 +10,29 @@ import Foundation
 
 struct CurrentWeather: Codable {
     
-    var lastUpdatedEpoch: Int?
-    var lastUpdated: String?
-    var tempCelcius: Double?
-    var tempFahrenheit: Double?
-    var isCurrentDay: Int?
-    var condition: Condition?
-    var windMph: Double?
-    var windKph: Double?
-    var windDegree: Int?
-    var windDirection: String?
-    var pressureMb: Double?
-    var pressureIN: Double?
-    var precipitationMM: Double?
-    var precipitationIN: Double?
-    var humidity: Double?
-    var cloud: Double?
-    var feelsLikeCelcius: Double?
-    var feelsLikeFahrenheit: Double?
-    var visibilityKM: Int?
-    var visibilityMiles: Int?
-    var uv: Int?
-    var gustMPH: Double?
-    var gustKPH: Double?
+    var lastUpdatedEpoch: Int
+    var lastUpdated: String
+    var tempCelcius: Double
+    var tempFahrenheit: Double
+    var isCurrentDay: Int
+    var condition: Condition
+    var windMph: Double
+    var windKph: Double
+    var windDegree: Int
+    var windDirection: String
+    var pressureMb: Double
+    var pressureIN: Double
+    var precipitationMM: Double
+    var precipitationIN: Double
+    var humidity: Double
+    var cloud: Double
+    var feelsLikeCelcius: Double
+    var feelsLikeFahrenheit: Double
+    var visibilityKM: Int
+    var visibilityMiles: Int
+    var uv: Int
+    var gustMPH: Double
+    var gustKPH: Double
     
     enum CodingKeys: String, CodingKey {
         case lastUpdatedEpoch = "last_updated_epoch"
@@ -40,6 +40,7 @@ struct CurrentWeather: Codable {
         case tempCelcius = "temp_c"
         case tempFahrenheit = "temp_f"
         case isCurrentDay = "is_day"
+        case condition = "condition"
         case windMph = "wind_mph"
         case windKph = "wind_kph"
         case windDegree = "wind_degree"
@@ -54,6 +55,9 @@ struct CurrentWeather: Codable {
         case visibilityMiles = "vis_miles"
         case gustMPH = "gust_mph"
         case gustKPH = "gust_kph"
+        case humidity = "humidity"
+        case cloud = "cloud"
+        case uv = "uv"
     }
     
 }
