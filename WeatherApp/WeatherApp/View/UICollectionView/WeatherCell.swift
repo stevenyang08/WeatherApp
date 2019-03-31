@@ -31,10 +31,13 @@ class WeatherCell: UICollectionViewCell {
         cellBackgroundImage.layer.cornerRadius = 8
     }
     
+    
+    /// Set's the cell's data with the provided ForecastDay object.
+    ///
+    /// - Parameter forecast: A ForecastDay object with the details of the day's weather.
     func set(forecast: ForecastDay) {
-        let date = Date(timeIntervalSince1970: Double(forecast.dateEpoch))
+        dateLabel.text = dateFormatter.string(from: forecast.date)
         cellBackgroundImage.image = UIImage(named: "\(forecast.day.condition.code)f")
-        dateLabel.text = dateFormatter.string(from: date)
         weatherImage.image = UIImage(named: "\(forecast.day.condition.code)")
         currentTempLabel.text = "\(forecast.day.averageTempFahrenheit)º F"
         minimumTempLabel.text = "Min: \(forecast.day.minTempFahrenheit)º F"

@@ -32,8 +32,12 @@ final class WeatherService {
                 return
             }
             
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            
             do {
                 let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(formatter)
                 let weather = try decoder.decode(Weather.self, from: json)
                 completed(weather)
             } catch let error {

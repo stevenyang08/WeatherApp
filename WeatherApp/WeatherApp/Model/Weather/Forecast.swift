@@ -17,7 +17,7 @@ struct Forecast: Codable {
 }
 
 struct ForecastDay: Codable {
-    var date: String
+    var date: Date
     var dateEpoch: Int
     var day: Day
     var astro: Astro

@@ -39,7 +39,8 @@ class ForecastDetailsViewController: UIViewController {
         setupView()
     }
     
-    //Functions
+    
+    /// Sets the view using the data passed from the previous view controller.
     private func setupView() {
         let date = Date(timeIntervalSince1970: Double(forecast.dateEpoch))
         title = dateFormatter.string(from: date)
@@ -57,6 +58,6 @@ class ForecastDetailsViewController: UIViewController {
         moonriseLabel.text = forecast.astro.moonrise
         moonsetLabel.text = forecast.astro.moonset
         
-        Log.logger.info("ForecastDetailsViewController called setup.r")
+        Log.logger.info("ForecastDetailsViewController called setup.")
     }
 }

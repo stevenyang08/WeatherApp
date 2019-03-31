@@ -83,6 +83,8 @@ class ForecastViewController: UIViewController {
         Log.logger.info("Setup View was called, delegate was set and background color was set.")
     }
     
+    
+    /// Makes an API call to get the weather.
     private func loadWeatherData() {
         WeatherService.getWeather(query: queryZipCode) { [weak self] (weather) in
             if let weather = weather {
@@ -96,8 +98,12 @@ class ForecastViewController: UIViewController {
         }
     }
     
+    
+    /// Updates the view's weatherCollectionView with new data.
+    ///
+    /// - Parameter weather: The weather object returned from the API call.
     private func updateViewWithWeather(weather: Weather) {
-        self.forecast = weather.forecast.forecastDay
+        forecast = weather.forecast.forecastDay
         weatherCollectionView.reloadData()
         isFetchingData = false
         hideLoading()
@@ -107,11 +113,15 @@ class ForecastViewController: UIViewController {
         Log.logger.info("View was updated with new information.")
     }
     
+    
+    /// Searches the user's current location for weather data.
     private func searchByLocation() {
         showLoading()
         manager.startUpdatingLocation()
     }
     
+    
+    /// Creates a UIAlertController with a text field to input the user's data.
     private func presentSearch() {
         let alert = UIAlertController(title: "Search By Zip Code", message: "", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: { (_) in
@@ -144,6 +154,8 @@ extension ForecastViewController {
     }
 }
 
+
+// MARK: - Extension for CLLocationManager.
 extension ForecastViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         Log.logger.info("CLLocation didUpdateLocations called, location data: \(locations)")
@@ -174,6 +186,8 @@ extension ForecastViewController: CLLocationManagerDelegate {
     }
 }
 
+
+// MARK: - UICollectionViewDelegate
 extension ForecastViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         Log.logger.info("Selected indexPath: \(indexPath)")
@@ -181,12 +195,15 @@ extension ForecastViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension ForecastViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 80)
     }
 }
 
+
+// MARK: - UICollectionViewDataSource
 extension ForecastViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return forecast.count
