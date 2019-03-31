@@ -27,7 +27,7 @@ class ForecastDetailsViewController: UIViewController {
     
     //Variables
     var forecast: ForecastDay!
-    lazy var dateFormatter: DateFormatter = {
+    private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d"
         return dateFormatter
@@ -56,5 +56,7 @@ class ForecastDetailsViewController: UIViewController {
         sunsetLabel.text = forecast.astro.sunset
         moonriseLabel.text = forecast.astro.moonrise
         moonsetLabel.text = forecast.astro.moonset
+        
+        Log.logger.info("ForecastDetailsViewController called setup.r")
     }
 }

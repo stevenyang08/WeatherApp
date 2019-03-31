@@ -26,6 +26,9 @@ class WeatherCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        cellBackgroundImage.clipsToBounds = true
+        cellBackgroundImage.layer.cornerRadius = 8
     }
     
     func set(forecast: ForecastDay) {
@@ -36,6 +39,8 @@ class WeatherCell: UICollectionViewCell {
         currentTempLabel.text = "\(forecast.day.averageTempFahrenheit)º F"
         minimumTempLabel.text = "Min: \(forecast.day.minTempFahrenheit)º F"
         maximumTempLabel.text = "Max: \(forecast.day.maxTempFahrenheit)º F"
+        
+        Log.logger.info("Cell Data was set.")
     }
     
 }

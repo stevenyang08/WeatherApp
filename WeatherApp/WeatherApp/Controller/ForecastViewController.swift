@@ -34,6 +34,7 @@ class ForecastViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "weatherDetailsSegue", let forecast = sender as? ForecastDay, let destination = segue.destination as? ForecastDetailsViewController else { return }
         destination.forecast = forecast
+        Log.logger.info("Passing forecasta data to next view.")
     }
     
     //Storyboard Actions
@@ -54,11 +55,13 @@ class ForecastViewController: UIViewController {
             guard !shouldRequest else {
                 self?.manager.requestWhenInUseAuthorization()
                 self?.isFetchingData = false
+                Log.logger.info("Requesting location permission from user.")
                 return
             }
             
             if enabled {
                 self?.searchByLocation()
+                Log.logger.info("Searching by location.")
             }
         }
     }
@@ -70,12 +73,14 @@ class ForecastViewController: UIViewController {
         
         isFetchingData = true
         presentSearch()
+        Log.logger.info("Presenting search box")
     }
     
     //Functions
     private func setupView() {
         manager.delegate = self
         view.addGradient(topColor: #colorLiteral(red: 0.7450980392, green: 0.5490196078, blue: 0.7137254902, alpha: 1), bottomColor: #colorLiteral(red: 0.3607843137, green: 0.3607843137, blue: 0.5529411765, alpha: 1))
+        Log.logger.info("Setup View was called, delegate was set and background color was set.")
     }
     
     private func loadWeatherData() {
@@ -86,6 +91,7 @@ class ForecastViewController: UIViewController {
                 ErrorBanner.displayErrorBanner(with: .genericError)
                 self?.isFetchingData = false
                 self?.hideLoading()
+                Log.logger.info("Failed to fetch data.")
             }
         }
     }
@@ -98,6 +104,7 @@ class ForecastViewController: UIViewController {
         
         emptyView.isHidden = forecast.count > 0
         title = weather.location.name
+        Log.logger.info("View was updated with new information.")
     }
     
     private func searchByLocation() {
@@ -107,10 +114,13 @@ class ForecastViewController: UIViewController {
     
     private func presentSearch() {
         let alert = UIAlertController(title: "Search By Zip Code", message: "", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive, handler: { (_) in
+            self.isFetchingData = false
+        })
         let searchAction = UIAlertAction(title: "Search", style: .default, handler: { [weak alert] (_) in
             guard let text = alert?.textFields?.first?.text else { return }
             self.queryZipCode = text
+            Log.logger.info("Search query initiated from submit button.")
         })
         
         alert.addTextField { (textField) in
@@ -120,6 +130,7 @@ class ForecastViewController: UIViewController {
         alert.addAction(cancelAction)
         alert.addAction(searchAction)
         self.present(alert, animated: true, completion: nil)
+        Log.logger.info("Search Alert Controller was displayed.")
     }
 
 }
@@ -135,6 +146,7 @@ extension ForecastViewController {
 
 extension ForecastViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        Log.logger.info("CLLocation didUpdateLocations called, location data: \(locations)")
         guard let currentLocation = locations.first else {
             isFetchingData = false
             hideLoading()
@@ -151,6 +163,7 @@ extension ForecastViewController: CLLocationManagerDelegate {
             }
             
             self?.queryZipCode = zipCode
+            Log.logger.info("CLLocation zip code was updated.")
         }
     }
     

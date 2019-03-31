@@ -21,7 +21,7 @@ final class WeatherService {
     ///   - query: The Zip Code being used in the query.
     ///   - completed: The weather object being returned.
     static func getWeather(query: String, completed: @escaping WeatherCompletion) {
-        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "APIKEY") as? String, let weatherUrl = URL(string: "https://api.apixu.com/v1/forecast.json?key=\(apiKey)&q=\(query)&days=7") else {
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "APIKEY") as? String, let weatherUrl = URL(string: "https://api.apixu.com/v1/forecast.json?key=\(apiKey)&q=\(query)&days=10") else {
             completed(nil)
             return
         }
@@ -40,6 +40,7 @@ final class WeatherService {
                 Log.logger.error("Failed to parse Weather, response: \(error)")
                 completed(nil)
             }
+            Log.logger.info("API Request made.")
         }
     }
     

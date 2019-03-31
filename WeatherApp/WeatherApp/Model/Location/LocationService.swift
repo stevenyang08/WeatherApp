@@ -27,6 +27,8 @@ class LocationService {
         case .authorizedAlways, .authorizedWhenInUse:
             completed(false, true)
         }
+        
+        Log.logger.info("LocationManager was checked.")
     }
     
     private func showAlert() {
@@ -35,6 +37,7 @@ class LocationService {
         alert.addAction(okAction)
         
         UIApplication.topViewController()?.present(alert, animated: true, completion: nil)
+        Log.logger.error("Locations Services error shown.")
     }
     
 }

@@ -59,9 +59,16 @@
                                                 <view tag="30" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQP-Xh-fm3">
                                                     <rect key="frame" x="16" y="28" width="343" height="105"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ajZ-NF-cZ6">
+                                                        <imageView userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ajZ-NF-cZ6">
                                                             <rect key="frame" x="0.0" y="0.0" width="343" height="105"/>
                                                         </imageView>
+                                                        <view clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52a-sZ-7DE">
+                                                            <rect key="frame" x="0.0" y="0.0" width="343" height="105"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="8"/>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rYw-Ls-WFO">
                                                             <rect key="frame" x="8" y="27.5" width="50" height="50"/>
                                                             <constraints>
@@ -104,13 +111,15 @@
                                                             </subviews>
                                                         </stackView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="ajZ-NF-cZ6" firstAttribute="leading" secondItem="AQP-Xh-fm3" secondAttribute="leading" id="4oh-RT-FBt"/>
                                                         <constraint firstItem="p7q-Qq-uAN" firstAttribute="bottom" secondItem="rYw-Ls-WFO" secondAttribute="bottom" id="52A-KH-fPF"/>
                                                         <constraint firstItem="rYw-Ls-WFO" firstAttribute="centerY" secondItem="AQP-Xh-fm3" secondAttribute="centerY" id="9Oc-cl-VH1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="52a-sZ-7DE" secondAttribute="trailing" id="GR3-w9-g40"/>
                                                         <constraint firstItem="nfA-8L-aYi" firstAttribute="bottom" secondItem="rYw-Ls-WFO" secondAttribute="bottom" id="Qa9-Bb-uv6"/>
                                                         <constraint firstItem="p7q-Qq-uAN" firstAttribute="top" secondItem="rYw-Ls-WFO" secondAttribute="top" id="SGX-ll-wgB"/>
+                                                        <constraint firstItem="52a-sZ-7DE" firstAttribute="leading" secondItem="AQP-Xh-fm3" secondAttribute="leading" id="T1Q-Yx-uDY"/>
                                                         <constraint firstItem="nfA-8L-aYi" firstAttribute="top" secondItem="rYw-Ls-WFO" secondAttribute="top" id="U37-2Y-olm"/>
                                                         <constraint firstAttribute="trailing" secondItem="ajZ-NF-cZ6" secondAttribute="trailing" id="ZqN-eU-6jh"/>
                                                         <constraint firstAttribute="bottom" secondItem="ajZ-NF-cZ6" secondAttribute="bottom" id="ap7-yd-auk"/>
@@ -118,6 +127,8 @@
                                                         <constraint firstItem="p7q-Qq-uAN" firstAttribute="leading" secondItem="rYw-Ls-WFO" secondAttribute="trailing" constant="8" id="hRJ-Yi-ZlG"/>
                                                         <constraint firstItem="rYw-Ls-WFO" firstAttribute="leading" secondItem="AQP-Xh-fm3" secondAttribute="leading" constant="8" id="hrx-Y5-rHn"/>
                                                         <constraint firstItem="ajZ-NF-cZ6" firstAttribute="top" secondItem="AQP-Xh-fm3" secondAttribute="top" id="jqu-4R-Ck6"/>
+                                                        <constraint firstItem="52a-sZ-7DE" firstAttribute="top" secondItem="AQP-Xh-fm3" secondAttribute="top" id="v06-aV-ydf"/>
+                                                        <constraint firstAttribute="bottom" secondItem="52a-sZ-7DE" secondAttribute="bottom" id="xVb-nF-fOR"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -200,7 +211,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BOM-z8-hVi">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BOM-z8-hVi">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </imageView>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHx-Dd-usg">
